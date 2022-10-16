@@ -1,4 +1,7 @@
-import { createProxyMiddleware } from 'http-proxy-middleware';
+/**
+ * This is not a production server yet!
+ * This is only a minimal backend to get started.
+ */
 
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
@@ -9,15 +12,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
-  app.use(
-    `/${globalPrefix}/articles`,
-    createProxyMiddleware({
-      target: process.env.ARTICLES_SERVICE_URL,
-      changeOrigin: true,
-    })
-  );
-
-  const port = process.env.PORT || 3333;
+  const port = process.env.PORT || 3334;
   await app.listen(port);
   Logger.log(`🚀 Running on: http://localhost:${port}/${globalPrefix}`);
 }

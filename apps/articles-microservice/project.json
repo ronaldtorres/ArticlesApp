@@ -1,7 +1,7 @@
 {
-  "name": "api-gateway",
+  "name": "articles-microservice",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/api-gateway/src",
+  "sourceRoot": "apps/articles-microservice/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -10,9 +10,9 @@
       "options": {
         "target": "node",
         "compiler": "tsc",
-        "outputPath": "dist/apps/api-gateway",
-        "main": "apps/api-gateway/src/main.ts",
-        "tsConfig": "apps/api-gateway/tsconfig.app.json",
+        "outputPath": "dist/apps/articles-microservice",
+        "main": "apps/articles-microservice/src/main.ts",
+        "tsConfig": "apps/articles-microservice/tsconfig.app.json",
         "generatePackageJson": true
       },
       "configurations": {
@@ -20,21 +20,23 @@
           "optimization": true,
           "extractLicenses": true,
           "inspect": false,
-          "fileReplacements": [{
-            "replace": "apps/api-gateway/src/environments/environment.ts",
-            "with": "apps/api-gateway/src/environments/environment.prod.ts"
-          }]
+          "fileReplacements": [
+            {
+              "replace": "apps/articles-microservice/src/environments/environment.ts",
+              "with": "apps/articles-microservice/src/environments/environment.prod.ts"
+            }
+          ]
         }
       }
     },
     "serve": {
       "executor": "@nrwl/js:node",
       "options": {
-        "buildTarget": "api-gateway:build"
+        "buildTarget": "articles-microservice:build"
       },
       "configurations": {
         "production": {
-          "buildTarget": "api-gateway:build:production"
+          "buildTarget": "articles-microservice:build:production"
         }
       }
     },
@@ -42,14 +44,14 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/api-gateway/**/*.ts"]
+        "lintFilePatterns": ["apps/articles-microservice/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/api-gateway"],
+      "outputs": ["coverage/apps/articles-microservice"],
       "options": {
-        "jestConfig": "apps/api-gateway/jest.config.ts",
+        "jestConfig": "apps/articles-microservice/jest.config.ts",
         "passWithNoTests": true
       }
     }
